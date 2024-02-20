@@ -1,22 +1,24 @@
-class Person {
-  constructor(name, age) {
+class Person(name, age) {
     this.name = name;
     this.age = age;
   }
 
-  greet() {
+  greet() 
+  {
     console.log(`Hello, my name is ${this.name}, I am ${this.age} years old.`);
   }
 }
 
-class Employee extends Person {
-  constructor(name, age, jobTitle) {
+class Employee(name, age, jobTitle){
+	Person.call(name, age);
     this.jobTitle = jobTitle;
-  }
+}
 
-  jobGreet() {
+Employee.prototype.__proto__ = Person.prototype;
+
+Employee.prototype.jobGreet()
+{
     console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
-  }
 }
 
 
